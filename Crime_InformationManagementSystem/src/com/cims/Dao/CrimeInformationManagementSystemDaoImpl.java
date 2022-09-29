@@ -12,7 +12,7 @@ public class CrimeInformationManagementSystemDaoImpl  implements CrimeInformatio
 	public String registerStudent() {
 		// TODO Auto-generated method stub
 		
-		String msg ="Not Inserted" ;
+		String msg ="Not Inser" ;
 		
 		
 		try(Connection con =CimsUtility.proviedConnection()){
