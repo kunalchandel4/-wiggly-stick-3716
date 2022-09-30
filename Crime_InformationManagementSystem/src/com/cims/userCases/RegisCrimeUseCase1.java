@@ -37,7 +37,7 @@ public class RegisCrimeUseCase1 {
 		System.out.println("Enter area of crime ");
 
 		String area= sc.nextLine();
-		sc.next() ;
+		
 		System.out.println("Enter pincode of area");
 
 		int pin = sc.nextInt();

@@ -12,7 +12,7 @@ public interface CrimeInformationManagementSystemDao {
 	
 	public String registerCrimeFile(Crime_files c) ;
 	
-	public  Criminal searchbyCriminalID(int id )throws CrimeSystemException ;
+	public Criminal searchbyCriminalID(int id )throws CrimeSystemException ;
 	
 	public  List<Criminal> searchbyCriminalName(String name)throws CrimeSystemException ;
 	
@@ -24,8 +24,12 @@ public interface CrimeInformationManagementSystemDao {
 	public  String CrimebychangeStatus(int id ,  String value)throws CrimeSystemException ;
 	
 	
+	public int NumberofCaseSolved()throws CrimeSystemException;
+	public int NumberofCaseUnSolved()throws CrimeSystemException;
 	
+	public int NumberofCrimeCurrentMonth()throws CrimeSystemException;
 	
-	
-	
+	public List<Crime_files> displaycrimebyArea(String area, int pin)throws CrimeSystemException  ;
+
+	public List<Criminal> displaycriminalbyArea(String area , int pin) throws CrimeSystemException ;
 }
