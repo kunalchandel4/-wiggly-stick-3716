@@ -9,12 +9,11 @@ import com.cims.model.Crime_files;
 import com.cims.model.Criminal;
 import com.cimsExceptions.CrimeSystemException;
 
-public class SearchingfacilityUseCase3 {
+public class SearchingFacilityForCrimes {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		// for the criminals database
 		Scanner sc = new Scanner(System.in);
 
 		CrimeInformationManagementSystemDao dao = new CrimeInformationManagementSystemDaoImpl();
@@ -22,10 +21,10 @@ public class SearchingfacilityUseCase3 {
 		int i = 0;
 
 		while (true) {
+			System.out.println();
+			System.out.println("ENter 1. if you want to Search by the crime_: name ");
 
-			System.out.println("ENter 1. if you want to Search by the criminal name ");
-
-			System.out.println("ENter 2. if you want to Search by the crimes id ");
+			System.out.println("ENter 2. if you want to Search by the Case :_file no ");
 
 			System.out.println("ENter 3. Go back to the home page :) ");
 			System.out.println();
@@ -37,13 +36,13 @@ public class SearchingfacilityUseCase3 {
 
 			case 1:
 				System.out.println();
+				System.out.println("ENter crime name ");
 				sc.nextLine();
-				System.out.println("ENter criminal name ");
 				String name = sc.nextLine();
 
-				List<Criminal> res = null;
+				List<Crime_files> res = null;
 				try {
-					res = dao.searchbyCriminalName(name);
+					res = dao.searchbyCrimesName(name);
 				} catch (CrimeSystemException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -55,12 +54,12 @@ public class SearchingfacilityUseCase3 {
 
 			case 2:
 				System.out.println();
-				System.out.println("ENter criminal Id ");
+				System.out.println("ENter case:_file no ");
 				sc.nextLine();
 				int id = sc.nextInt();
-				Criminal res1 = null;
+				Crime_files res1 = null;
 				try {
-					res1 = dao.searchbyCriminalID(id);
+					res1 = dao.searchbyCrimesbyID(id);
 				} catch (CrimeSystemException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -71,7 +70,6 @@ public class SearchingfacilityUseCase3 {
 			case 3:
 				i = 1;
 				break;
-
 			default:
 				System.out.println();
 				System.out.println("Please ENter correct keyword :)");

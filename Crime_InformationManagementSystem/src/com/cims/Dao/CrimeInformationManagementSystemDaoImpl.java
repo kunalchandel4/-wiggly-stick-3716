@@ -1,9 +1,14 @@
 package com.cims.Dao;
 
 import java.sql.Connection;
+import java.time.LocalDate;
+import java.time.Month;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,7 +70,7 @@ public class CrimeInformationManagementSystemDaoImpl implements CrimeInformation
 			ps.setString(5, c.getStatus());
 			ps.setString(6, c.getDetails_of_crime());
 			ps.setString(7, c.getAre_of_crime());
-			ps.setInt(9, c.getPincode());
+			ps.setInt(8, c.getPincode());
 			int x = ps.executeUpdate();
 //			ps.setString(1, msg);
 
@@ -227,11 +232,11 @@ public class CrimeInformationManagementSystemDaoImpl implements CrimeInformation
 			pp.setInt(2, id);
 
 			int set = pp.executeUpdate();
-			if(set>0)
-				msg = "Status will be changed - "+ value ;
+			if (set > 0)
+				msg = "Status will be changed - " + value + "To this case_fileno :)- "+id;
 
-			else			
-		  throw new CrimeSystemException(id + " !-! This Crime record Doesn't Exits");
+			else
+				throw new CrimeSystemException(id + " !-! This Crime record Doesn't Exits");
 			// in this database ");
 
 		} catch (SQLException e) {
@@ -242,6 +247,162 @@ public class CrimeInformationManagementSystemDaoImpl implements CrimeInformation
 
 		return msg;
 
+	}
+
+	@Override
+	public int NumberofCaseSolved() throws CrimeSystemException {
+		int msg = 0;
+
+		try (Connection con = CimsUtility.proviedConnection()) {
+
+			PreparedStatement pp = con.prepareStatement(" select * from crime_file  where status = 'Solved'");
+			;
+
+			ResultSet set = pp.executeQuery();
+			while (set.next()) {
+				msg += 1;
+
+			}
+
+		} catch (SQLException e) {
+			// TODO: handle exception
+
+			throw new CrimeSystemException(e.getMessage());
+		}
+
+		return msg;
+	}
+
+	@Override
+	public int NumberofCaseUnSolved() throws CrimeSystemException {
+		int msg = 0;
+
+		try (Connection con = CimsUtility.proviedConnection()) {
+
+			PreparedStatement pp = con.prepareStatement(" select * from crime_file  where status = 'Unsolved'");
+			;
+
+			ResultSet set = pp.executeQuery();
+			while (set.next()) {
+				msg += 1;
+
+			}
+
+		} catch (SQLException e) {
+			// TODO: handle exception
+
+			throw new CrimeSystemException(e.getMessage());
+		}
+
+		return msg;
+	}
+
+	@Override
+	public int NumberofCrimeCurrentMonth() throws CrimeSystemException {
+		int count = 0;
+		LocalDate currentdate = LocalDate.now();
+//		int currentDay = currentdate.getDayOfMonth();
+
+		Month currentMonth = currentdate.getMonth();
+
+		try (Connection con = CimsUtility.proviedConnection()) {
+
+			PreparedStatement pp = con.prepareStatement("select  * from crime_file where Month(dt) =Month(?)");
+			;
+			Date sqlDate = Date.valueOf(currentdate);
+
+			pp.setDate(1, sqlDate);
+			ResultSet set = pp.executeQuery();
+			while (set.next()) {
+				count += 1;
+
+			}
+
+		} catch (SQLException e) {
+			// TODO: handle exception
+
+			throw new CrimeSystemException(e.getMessage());
+		}
+
+		return count;
+	}
+
+	@Override
+	public List<Crime_files> displaycrimebyArea(String area, int pin) throws CrimeSystemException {
+		// TODO Auto-generated method stub
+
+		List<Crime_files> rec = new ArrayList<>();
+
+		Crime_files obj = null;
+
+		try (Connection con = CimsUtility.proviedConnection()) {
+
+			PreparedStatement pp = con
+					.prepareStatement(" select  * from crime_file where area_of_crime = ? AND pincode = ?");
+
+			pp.setString(1, area);
+			pp.setInt(2, pin);
+			ResultSet set = pp.executeQuery();
+			while (set.next()) {
+
+				obj = new Crime_files();
+
+				obj.setAre_of_crime(set.getString("area_of_crime"));
+				obj.setCase_no(set.getInt("Case_no"));
+				obj.setCname(set.getString("cname"));
+				obj.setDate(set.getString("dt"));
+				obj.setDetails_of_crime(set.getString("des_ofcrime"));
+				obj.setMain_suspect(set.getString("msuspected"));
+				obj.setPincode(set.getInt("pincode"));
+				obj.setStatus(set.getString("status"));
+				obj.setVictims(set.getString("victims"));
+				rec.add(obj);
+
+			}
+
+			if (rec.isEmpty())
+				throw new CrimeSystemException(area + " !-! This area  Doesn't Exits");
+
+		} catch (SQLException e) {
+			// TODO: handle exception
+
+			throw new CrimeSystemException(e.getMessage());
+		}
+
+		return rec;
+	}
+
+	@Override
+	public List<com.cims.model.Criminal> displaycriminalbyArea(String area, int pin) throws CrimeSystemException {
+		List<Criminal> rec = new ArrayList<>();
+
+		Criminal obj = null;
+
+		try (Connection con = CimsUtility.proviedConnection()) {
+
+			PreparedStatement pp = con.prepareStatement(" select  * from criminal where area_of = ? AND pincode = ?");
+
+			pp.setString(1, area);
+			pp.setInt(2, pin);
+			ResultSet set = pp.executeQuery();
+			while (set.next()) {
+				obj = new Criminal(set.getInt("Crim_id"), set.getString("criname"), set.getInt("age"),
+						set.getString("gender"), set.getString("address"), set.getString("imark"),
+						set.getString("area_of"), set.getInt("case_Id"), set.getInt("pincode"));
+				rec.add(obj);
+
+			}
+
+			if (rec.isEmpty())
+				throw new CrimeSystemException(area + " !-! This area  Doesn't Exits");
+
+		} catch (SQLException e) {
+			// TODO: handle exception
+
+			throw new CrimeSystemException(e.getMessage());
+		}
+
+		return rec;
 	}
 
 }
