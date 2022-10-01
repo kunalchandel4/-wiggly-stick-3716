@@ -43,12 +43,13 @@ public class SearchingFacilityForCrimes {
 				List<Crime_files> res = null;
 				try {
 					res = dao.searchbyCrimesName(name);
+					res.forEach(s -> System.out.println(s));
 				} catch (CrimeSystemException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
-				res.forEach(s -> System.out.println(s));
+				
 
 				break;
 
@@ -60,11 +61,12 @@ public class SearchingFacilityForCrimes {
 				Crime_files res1 = null;
 				try {
 					res1 = dao.searchbyCrimesbyID(id);
+					System.out.println(res1);
 				} catch (CrimeSystemException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-				System.out.println(res1);
+				
 				break;
 
 			case 3:

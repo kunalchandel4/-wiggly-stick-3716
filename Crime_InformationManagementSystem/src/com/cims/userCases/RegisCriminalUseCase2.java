@@ -13,6 +13,8 @@ public class RegisCriminalUseCase2 {
 		// TODO Auto-generated method stub
 
 		Scanner sc = new Scanner(System.in);
+		
+		try {
 
 		System.out.println("Enter Criminal name");
 
@@ -54,6 +56,12 @@ public class RegisCriminalUseCase2 {
 		String ans = dao.registerCriminal(cr);
 		
 		System.out.println(ans);
+		
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("Please ENter right data :) ");
+		}
 
 	}
 
