@@ -52,7 +52,7 @@ public class Crime_files {
 		this.main_suspect = main_suspect;
 		this.cname = cname;
 		this.area_of_crime= area_of_crime ;
-		this.pincode = pincode ;
+		this.pincode = pin ;
 		this.status = st ;
 		
 	}
@@ -144,9 +144,11 @@ public class Crime_files {
 
 	@Override
 	public String toString() {
-		return "Crime_files [case_no=" + case_no + ", date=" + date + ", victims=" + victims + ", Details_of_crime="
-				+ Details_of_crime + ", main_suspect=" + main_suspect + ", cname=" + cname + ", status=" + status
-				+ ", are_of_crime=" + area_of_crime + ", pincode=" + pincode + "]";
+		System.out.println();
+		System.out.println();
+		return "********* Crime_files [case_no=" + case_no + ", Date=" + date + ", Victims=" + victims + ", Details_of_crime="
+				+"\n"+ Details_of_crime + ", Main_suspect=" + main_suspect + ", Crime-name=" + cname + ", Status-=" + status
+				+ "\n"+",are_of_crime=" + area_of_crime + ", pincode=" + pincode + "] *********";
 	}
 
 
