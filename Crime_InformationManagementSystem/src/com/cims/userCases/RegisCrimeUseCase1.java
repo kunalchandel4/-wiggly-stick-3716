@@ -11,6 +11,8 @@ public class RegisCrimeUseCase1 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		Scanner sc = new Scanner(System.in);
+		
+		try {
 
 		System.out.println("Enter Date in this format yyyy/mm/dd");
 
@@ -53,7 +55,11 @@ public class RegisCrimeUseCase1 {
 		String ans = dao.registerCrimeFile(cf);
 		
 		System.out.println(ans);
-		
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			System.out.println("Please ENter right data :) ");
+		}
 
 	}
 

@@ -22,6 +22,7 @@ public class Run {
 
 		Scanner sc = new Scanner(System.in);
 		int i = 0;
+		int choice = 0;
 		while (true) {
 
 			System.out.println("Enter you choice !-:)");
@@ -44,7 +45,7 @@ public class Run {
 			System.out.println();
 			System.out.println("ENter you CHoice :) ");
 
-			int choice = sc.nextInt();
+			choice = sc.nextInt();
 
 			switch (choice) {
 			case 1:
@@ -69,29 +70,28 @@ public class Run {
 				break;
 
 			case 6:
-             
+
 				ShowsTheSOlvedANdUnSOlvedUseCase.main(null);
 				break;
 
 			case 7:
 				SearchingCurrentMonth.main(null);
 				break;
-              
+
 			case 8:
-				
-			SearchByTheArea.main(null);
-			break;
+
+				SearchByTheArea.main(null);
+				break;
 			case 9:
 				i = 1;
 				break;
-				
-				
+
 			default:
 				System.out.println("Please Enter right Keyword :) -");
 				break;
 
 			}
-			if(i==1) {
+			if (i == 1) {
 				break;
 			}
 
