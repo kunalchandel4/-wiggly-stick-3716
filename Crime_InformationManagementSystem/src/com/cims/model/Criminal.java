@@ -61,9 +61,10 @@ public class Criminal {
 	}
 	@Override
 	public String toString() {
-		return "Criminal [cri_Id=" + cri_Id + ", cri_name=" + cri_name + ", Age=" + Age + ", gender=" + gender
-				+ ", address=" + address + ", Identification=" + Identification + ", Area_of_crime=" + Area_of_crime
-				+ ", crime_file=" + crime_file + ", area_pincode=" + area_pincode + "]";
+		System.out.println();
+		return "********* Criminal -> Criminal-Id=" + cri_Id + ", Criminal-Name=" + cri_name + ",Criminal-Age=" + Age + ", Gender=" + gender
+				+ "\n"+"Address=" + address + ", Identification-Mark=" + Identification + ", Area_of_crime=" + Area_of_crime
+				+ "\n"+", Crime_file-No=" + crime_file + ", Area_pincode=" + area_pincode + "] *********";
 	}
 	
 	public Criminal() {
