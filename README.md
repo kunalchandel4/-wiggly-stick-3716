@@ -30,6 +30,13 @@ The software produce report for:-
     A. Number of solved and unsolved crimes.
     B. Number of crimes recorded in the current month.
 For better understating you can checkout this video.
+
+## Tech Stack
+- JAVA 
+- MYSQl
+- JavaScript
+- You Tube APi
+
 Video Explainer of flow control
 ```bash
 https://drive.google.com/drive/folders/1yx6b0-yF9-vmqwwx0FiyoEYb00QzBAS9?usp=sharing
