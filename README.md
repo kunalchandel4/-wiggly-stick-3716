@@ -35,7 +35,7 @@ For better understating you can checkout this video.
 - JAVA 
 - MYSQl
 - DAO Pattern
-- JDBC Technology
+- JDBC Technology 
 
 Video Explainer of flow control
 ```bash
