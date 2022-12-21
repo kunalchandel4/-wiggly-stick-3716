@@ -34,8 +34,8 @@ For better understating you can checkout this video.
 ## Tech Stack
 - JAVA 
 - MYSQl
-- JavaScript
-- You Tube APi
+- DAO Pattern
+- JDBC Technology
 
 Video Explainer of flow control
 ```bash
